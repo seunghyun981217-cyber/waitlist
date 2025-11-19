@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>광진구, 성동구 ATS MAPS</name>
+    <description>광진구, 성동구 휠체어 수리 , 전동휠체어 충전 및 충전기 대여, 수동 휠체어 대여 가능한 곳의 정보를 공유하는 지도</description>
+    <NetworkLink>
+      <name>광진구, 성동구 ATS MAPS</name>
+      <Link>
+        <href><![CDATA[https://www.google.com/maps/d/kml?forcekml=1&mid=1LaxkSrLoHYTqs9LTs5Hp9FPtJ_Gjjuo]]></href>
+      </Link>
+    </NetworkLink>
+  </Document>
+</kml>
