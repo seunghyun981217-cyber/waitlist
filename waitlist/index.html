@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>대기순번 조회</title>
+    <style>
+        body { font-family: Arial; padding: 30px; max-width: 500px; margin: auto; }
+        input, button { padding: 10px; font-size: 16px; width: 100%; margin-top: 10px; }
+        #result { margin-top: 20px; font-size: 18px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h2>대기순번 조회</h2>
+<p>이름을 입력하면 현재 대기순번과 앞에 몇 명이 있는지 확인할 수 있습니다.</p>
+
+<input id="searchName" type="text" placeholder="이름을 입력하세요" />
+<button onclick="checkQueue()">조회하기</button>
+
+<div id="result"></div>
+
+<script>
+async function checkQueue() {
+
+    const response = await fetch("test - 뇌병변 마스터플랜.csv");
+    const csvText = await response.text();
+
+    const rows = csvText.split("\n").map(r => r.split(","));
+
+    // 실제 데이터는 2번째 줄부터 (첫 줄은 헤더, 두 번째 줄부터 실제)
+    const data = rows.slice(2);
+
+    // 진행상태가 "대기"인 사람만
+    const waitList = data.filter(r => r[7] === "대기");
+
+    // 이름만 모으기
+    const names = waitList.map(r => r[4]);
+
+    const inputName = document.getElementById("searchName").value.trim();
+    const index = names.indexOf(inputName);
+
+    const resultDiv = document.getElementById("result");
+
+    if (index === -1) {
+        resultDiv.innerHTML = "해당 이름은 대기자 명단에 없습니다.";
+    } else {
+        resultDiv.innerHTML = `
+            <p>🔹 <strong>${inputName}</strong>님의 현재 대기순번은 <strong>${index + 1}번</strong>입니다.</p>
+            <p>🔸 앞에 <strong>${index}</strong>명이 있습니다.</p>
+        `;
+    }
+}
+</script>
+
+</body>
+</html>
